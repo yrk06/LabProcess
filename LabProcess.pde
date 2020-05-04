@@ -11,6 +11,17 @@ SoundFile music;
 
 boolean isMusicPaused = false;
 
+
+// por conta de conflito com oo jogo de memoria, essa variavel controla os botões globais
+boolean globalWasPressed_1 = false;
+boolean globalWasPressed_2 = false;
+
+
+//explicação longa:
+
+/* A função que testa se os botões do jogo da memoria foram apertados acontece antes de testar os botões globais,
+por isso o programa não deixaria apertar o botão global. pois para o botão global o mouse não teria sido pressinado naquele frame*/
+
 // Esses dois botões são globais, o Return to Menu e o Reset
 button bTm = new button(new Vector2(640-5-100,720-72),new Vector2(200,40));
 button rset = new button(new Vector2(640+4+100,720-72),new Vector2(200,40));
@@ -106,14 +117,15 @@ void draw()
   bTm.Draw();
   rset.Draw();
   //Testamos se o mouse apertou algum desses botões
-  if(mousePressed && (mouseButton == LEFT))
+  if(mousePressed && (mouseButton == LEFT) && !globalWasPressed_1)
   {
-    was_pressed = true;
+    
+    globalWasPressed_1 = true;
     if(bTm.test_pressed(new Vector2(mouseX,mouseY)))
     {
      //Se apertamos pra voltar ao menu, só precisamos mudar o estado do jogo (aquele ENUM)
      c_game = game.menu;  
-     togMB.pos = new Vector2(640-10-500,720-72-(85));
+     togMB.pos = new Vector2(640-10-500,720-72);
     } 
     else if(rset.test_pressed(new Vector2(mouseX,mouseY)))
     {
@@ -124,13 +136,11 @@ void draw()
      
      }
    }
-  }
   togMB.Draw();
-  if(mousePressed && (mouseButton == LEFT) && !was_pressed)
+  if(mousePressed && (mouseButton == LEFT) && !globalWasPressed_2)
   {
-    was_pressed = true;
+    globalWasPressed_2 = true;
     if(togMB.test_pressed(new Vector2(mouseX,mouseY))){
-      println("text");
      if(!music.isPlaying()) 
      {
       music.play(); 

@@ -3,8 +3,8 @@ class button
 {
  Vector2 size; // Vector 2 é outra classe base feita para o projeto
  Vector2 pos;
- float timeout = 1.0; // descontinuado, não foi utilizado no projeto
- float currentTime; // descontinuado (era usado com o timeout)
+ float timeout = 1.0; // Tempo maximo de timeout do botão (delay pra apertar novamente)
+ float currentTime; // marca quanto ainda falta do timeout
  boolean pressed = false; // Guarda o estado se o botão esta apertado ou não
  int totalpressed = 0; // COntrola quantas vezes o botão foi apertado no total
  String label = ""; // É o texto colocado no botão

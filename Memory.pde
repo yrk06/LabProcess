@@ -172,4 +172,6 @@ void mouseReleased()
 {
   //Se o mouse for solto, resetar a variavel de primeiro frame
   was_pressed = false;
+  globalWasPressed_1 = false;
+  globalWasPressed_2 = false;
 }

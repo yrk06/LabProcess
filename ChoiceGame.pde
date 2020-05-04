@@ -100,8 +100,9 @@ void c_tick()
     text("Please Select a Door",640,144);
     
     //Se o mouse for apertado, vamos percorrer por todas as portas
-    if(mousePressed && (mouseButton == LEFT))
+    if(mousePressed && (mouseButton == LEFT) && !was_pressed)
     {
+      was_pressed = true;
       for(int i =0; i<3;i++){
     
        //Testar se a porta foi apertada
